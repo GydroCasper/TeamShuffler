@@ -7,7 +7,7 @@
     "telegraf": "^4.11.2"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon node index.js"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
