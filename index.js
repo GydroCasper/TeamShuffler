@@ -7,7 +7,7 @@ const telegramBot = require('node-telegram-bot-api');
 
 const bot = new telegramBot(process.env.BOT_TOKEN, {polling: true});
 
-const registeredUsers = {};
+let registeredUsers = {};
 
 bot.onText(/\/r/, (msg) => {
     if(msg.text === '/r' || msg.text === '/register') {
@@ -50,6 +50,18 @@ bot.onText(/\/s/, (msg) => {
 
         const response = `Current pool of the players is: \r\n${playersList}`;
         bot.sendMessage(msg.chat.id, response);
+    }
+});
+
+bot.onText(/\/c/, (msg) => {
+    if(msg.text === '/c' || msg.text === '/clear') {
+        if(Object.keys(registeredUsers).length === 0) {
+            bot.deleteMessage(msg.chat.id, msg.message_id);
+            bot.sendMessage(msg.from.id,`Nobody in a pool of players, nothing to clean up`);
+            return;
+        }
+        registeredUsers = {};
+        bot.sendMessage(msg.chat.id, 'Players pool is cleaned up');
     }
 });
 
