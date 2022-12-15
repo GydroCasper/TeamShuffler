@@ -8,8 +8,7 @@ const telegramBot = require("node-telegram-bot-api");
 const bot = new telegramBot(process.env.BOT_TOKEN, { polling: true });
 
 let registeredUsers = {};
-let teams = [];
-const NETS_COUNT = 3;
+const DEFAULT_NETS_COUNT = 2;
 
 bot.onText(/\/r/, (msg) => {
   if (msg.text === "/r" || msg.text === "/register") {
@@ -78,11 +77,15 @@ bot.onText(/\/c/, (msg) => {
   }
 });
 
-bot.onText(/\/s/, (msg) => {
-  if (msg.text === "/s" || msg.text === "/shuffle") {
+bot.onText(/\/s( .+)?/, (msg, match) => {
+  console.log(match);
+  if (msg.text.startsWith("/s") || msg.text.startsWith("/shuffle")) {
     // const playersList = usersToArray(registeredUsers);
     const playersList = getPlayersTestList();
-    const netCount = NETS_COUNT;
+    const netsCount =
+      match && match.length && match[1] && +match[1] > 0
+        ? +match[1]
+        : DEFAULT_NETS_COUNT;
 
     if (!playersList) {
       bot.sendMessage(
@@ -92,17 +95,17 @@ bot.onText(/\/s/, (msg) => {
       return;
     }
 
-    if (playersList.length < netCount * 4) {
+    if (playersList.length < netsCount * 4) {
       bot.sendMessage(
         msg.chat.id,
-        `There are just ${playersList.length} players to play on ${netCount} nets`
+        `There are just ${playersList.length} players to play on ${netsCount} nets`
       );
       return;
     }
 
     try {
-      const teams = shuffle(playersList, [], netCount * 2);
-      const response = `The teams are: \r\n${teamsToString(teams)}`;
+      const teams = shuffle(playersList, [], netsCount * 2);
+      const response = `The teams are: \r\n\r\n${teamsToString(teams)}`;
       bot.sendMessage(msg.chat.id, response);
     } catch (ex) {
       bot.sendMessage(msg.chat.id, ex.text);
