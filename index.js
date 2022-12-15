@@ -9,6 +9,8 @@ const bot = new telegramBot(process.env.BOT_TOKEN, { polling: true });
 
 let registeredUsers = {};
 const DEFAULT_NETS_COUNT = 2;
+const HOURS_TO_DISPOSE = 4;
+let timerToDeletePlayers;
 
 bot.onText(/\/r/, (msg) => {
   if (msg.text === "/r" || msg.text === "/register") {
@@ -21,7 +23,10 @@ bot.onText(/\/r/, (msg) => {
       return;
     }
 
+    launchTimerToDispose();
+
     registeredUsers[msg.from.id] = userToString(msg.from);
+
     bot.sendMessage(
       msg.from.id,
       `You joined a pool of players in a chat "${msg.chat.title}"`
@@ -78,10 +83,9 @@ bot.onText(/\/c/, (msg) => {
 });
 
 bot.onText(/\/s( .+)?/, (msg, match) => {
-  console.log(match);
   if (msg.text.startsWith("/s") || msg.text.startsWith("/shuffle")) {
-    // const playersList = usersToArray(registeredUsers);
-    const playersList = getPlayersTestList();
+    const playersList = usersToArray(registeredUsers);
+    // const playersList = getPlayersTestList();
     const netsCount =
       match && match.length && match[1] && +match[1] > 0
         ? +match[1]
@@ -227,4 +231,15 @@ const getPlayersTestList = () => {
     "Jacob Stockdale",
     "Antoine Dupon",
   ];
+};
+
+const launchTimerToDispose = () => {
+  if (timerToDeletePlayers) {
+    clearTimeout(timerToDeletePlayers);
+  }
+
+  timerToDeletePlayers = setTimeout(() => {
+    registeredUsers = [];
+    bot.sendMessage(msg.chat.id, "Thanks for a game, players pool is disposed");
+  }, HOURS_TO_DISPOSE * 60 * 60 * 1000);
 };
