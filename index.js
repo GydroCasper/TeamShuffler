@@ -40,7 +40,8 @@ bot.onText(/\/c/, (msg) => {
 });
 
 bot.onText(/\/s( .+)?/, (msg, match) => {
-  if (msg.text.startsWith("/s") || msg.text.startsWith("/shuffle")) {
+  const command = msg.text.split(" ")[0];
+  if (command === "/s" || command === "/shuffle") {
     shuffle(msg, match);
   }
 });

@@ -2,3 +2,4 @@ root = true
 
 [*]
 max_line_length = 100
+quote_type = single

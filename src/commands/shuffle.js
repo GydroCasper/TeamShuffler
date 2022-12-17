@@ -5,8 +5,8 @@ import { getPlayersTestList } from "../../data/teams.js";
 import { usersToArray } from "../user.js";
 
 export const shuffle = (msg, match) => {
-  // const playersList = usersToArray(registeredUsers);
-  const playersList = getPlayersTestList();
+  const playersList = usersToArray(registeredUsers);
+  // const playersList = getPlayersTestList();
   const netsCount =
     match && match.length && match[1] && +match[1] > 0 ? +match[1] : DEFAULT_NETS_COUNT;
 
