@@ -1,7 +1,7 @@
-import telegramBot from "node-telegram-bot-api";
+import telegramBot from 'node-telegram-bot-api';
 
 export let bot;
-export let registeredUsers = [];
+export let registeredUsers = {};
 
 export let timerToDeletePlayers;
 
@@ -14,5 +14,5 @@ export const setTimer = (timerValue) => {
 };
 
 export const initRegisteredUsers = () => {
-  registeredUsers = [];
+  registeredUsers = {};
 };

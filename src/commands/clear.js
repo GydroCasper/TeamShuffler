@@ -1,4 +1,4 @@
-import { bot, initRegisteredUsers, registeredUsers } from "../state.js";
+import { bot, initRegisteredUsers, registeredUsers } from '../state.js';
 
 export const clear = (msg) => {
   if (Object.keys(registeredUsers).length === 0) {
@@ -7,5 +7,5 @@ export const clear = (msg) => {
     return;
   }
   initRegisteredUsers();
-  bot.sendMessage(msg.chat.id, "Players pool is cleaned up");
+  bot.sendMessage(msg.chat.id, 'Players pool is cleaned up');
 };

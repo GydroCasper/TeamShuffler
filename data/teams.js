@@ -1,24 +1,40 @@
 export const getPlayersTestList = () => {
   return [
-    "Johnny Sexton",
-    "Rory Best",
-    "Ronan O'Gara",
-    "Beauden Barrett",
-    "Brodie Retallick",
-    "Alun Wyn Jones",
-    "Owen Farrell",
-    "Faf de Klerk",
-    "Tadhg Furlong",
-    "Maro Itoje",
-    "Mako Vunipola",
-    "Ardie Savea",
-    "Billy Vunipola",
-    "Handre Pollard",
-    "Rieko Ioane",
-    "Malcolm Marx",
-    "Richie Mo'unga",
-    "Cheslin Kolbe",
-    "Jacob Stockdale",
-    "Antoine Dupon",
+    playerConstructor('Jonny', '', 'Sexton', false),
+    playerConstructor('Rory', '', 'Best', true),
+    playerConstructor('Ronan', '', "O'Gara", true),
+    playerConstructor('Beauden', '', 'Barrett', true),
+    playerConstructor('Brodie', '', 'Retallick', false),
+    playerConstructor('Alun', '', 'Wyn Jones'),
+    playerConstructor('Owen', '', 'Farrell'),
+    playerConstructor('Faf', '', 'de Klerk', false),
+    playerConstructor('Tadhg', '', 'Furlong'),
+    playerConstructor('Maro', '', 'Itoje', true),
+    playerConstructor('Mako', '', 'Vunipola'),
+    playerConstructor('Ardie', '', 'Savea', false),
+    playerConstructor('Billy', '', 'Vunipola'),
+    playerConstructor('Handre', '', 'Pollard', false),
+    playerConstructor('Rieko', '', 'Ioane', true),
+    playerConstructor('Malcolm', '', 'Marx'),
+    playerConstructor('Richie', '', "Mo'unga", true),
+    playerConstructor('Cheslin', '', 'Kolbe', false),
+    playerConstructor('Jacob', '', 'Stockdale', true),
+    playerConstructor('Antoine', '', 'Dupon', false),
   ];
+};
+
+const playerConstructor = (name, username, lastName, isMale) => {
+  const player = {
+    first_name: name,
+    username: username,
+    last_name: lastName,
+  };
+
+  if (isMale === true) {
+    player.isMale = true;
+  } else if (isMale === false) {
+    player.isMale = false;
+  }
+
+  return player;
 };

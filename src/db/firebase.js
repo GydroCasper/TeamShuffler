@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, set, ref } from 'firebase/database';
+import { getDatabase, set, ref, onValue } from 'firebase/database';
+import { registeredUsers } from '../state.js';
 
-export const saveGender = async (userId, userFirstName, userName, userLastName, isMale) => {
+const connect = () => {
   const firebaseConfig = {
     apiKey: process.env.FIREBASE_API_KEY,
     authDomain: process.env.FIREBASE_APP_DOMAIN,
@@ -14,6 +15,11 @@ export const saveGender = async (userId, userFirstName, userName, userLastName, 
 
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
+  return database;
+};
+
+export const saveGender = async (userId, userFirstName, userName, userLastName, isMale) => {
+  const database = connect();
 
   const playerObject = { isMale: isMale };
 
@@ -30,4 +36,16 @@ export const saveGender = async (userId, userFirstName, userName, userLastName, 
   }
 
   await set(ref(database, 'players/' + userId), playerObject);
+};
+
+export const fetchUserInfo = (userId) => {
+  const database = connect();
+  const reference = ref(database, 'players/' + userId);
+
+  onValue(reference, (snapshot) => {
+    registeredUsers[userId] = {
+      ...registeredUsers[userId],
+      isMale: snapshot.val()?.isMale,
+    };
+  });
 };

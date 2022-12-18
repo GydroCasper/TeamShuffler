@@ -32,7 +32,7 @@ export const gender = async (msg, match) => {
       isMale
     );
   } catch (ex) {
-    bot.sendMessage(msg.from.id, `Your gender is not saved due to: "${ex.text}"`);
+    bot.sendMessage(msg.from.id, `Your gender is not saved due to: "${ex.toString()}"`);
     return;
   }
 
