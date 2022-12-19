@@ -13,6 +13,7 @@ import { list } from './src/commands/list.js';
 import { clear } from './src/commands/clear.js';
 import { shuffle } from './src/commands/shuffle.js';
 import { gender } from './src/commands/gender.js';
+import { test } from './src/commands/test.js';
 
 init();
 
@@ -51,5 +52,12 @@ bot.onText(/\/g( .+)?/, (msg, match) => {
   const command = msg.text.split(' ')[0];
   if (command === '/g' || command === '/gender') {
     gender(msg, match);
+  }
+});
+
+bot.onText(/\/t( .+)?/, (msg, match) => {
+  const command = msg.text.split(' ')[0];
+  if (command === '/t' || command === '/test') {
+    test(msg, match);
   }
 });
