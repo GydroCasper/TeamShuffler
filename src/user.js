@@ -1,16 +1,16 @@
 export const userToString = (user) => {
   let name = '';
 
-  if (user.first_name) {
-    name += `${user.first_name}`;
+  if (user.firstName) {
+    name += `${user.firstName}`;
   }
 
-  if (user.username) {
-    name += ` "${user.username}"`;
+  if (user.userName) {
+    name += ` "${user.userName}"`;
   }
 
-  if (user.last_name) {
-    name += ` ${user.last_name}`;
+  if (user.lastName) {
+    name += ` ${user.lastName}`;
   }
 
   if (user.isMale === true) {
@@ -29,7 +29,9 @@ export const usersToString = (users) => {
       response += '\r\n';
     }
 
-    response += users[key];
+    console.log(users[key]);
+
+    response += userToString(users[key]);
   }
 
   return response;

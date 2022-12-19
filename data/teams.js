@@ -25,9 +25,9 @@ export const getPlayersTestList = () => {
 
 const playerConstructor = (name, username, lastName, isMale) => {
   const player = {
-    first_name: name,
-    username: username,
-    last_name: lastName,
+    firstName: name,
+    userName: username,
+    lastName: lastName,
   };
 
   if (isMale === true) {

@@ -1,4 +1,4 @@
-import { bot, registeredUsers } from '../state.js';
+import { registeredUsers } from '../state.js';
 import { usersToArray } from '../user.js';
 import { shufflePlayers } from '../shuffle.js';
 

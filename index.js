@@ -14,6 +14,7 @@ import { clear } from './src/commands/clear.js';
 import { shuffle } from './src/commands/shuffle.js';
 import { gender } from './src/commands/gender.js';
 import { test } from './src/commands/test.js';
+import { help } from './src/commands/help.js';
 
 init();
 
@@ -59,5 +60,11 @@ bot.onText(/\/t( .+)?/, (msg, match) => {
   const command = msg.text.split(' ')[0];
   if (command === '/t' || command === '/test') {
     test(msg, match);
+  }
+});
+
+bot.onText(/\/h/, (msg) => {
+  if (msg.text === '/h' || msg.text === '/help') {
+    help(msg);
   }
 });
