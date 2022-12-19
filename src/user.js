@@ -29,8 +29,6 @@ export const usersToString = (users) => {
       response += '\r\n';
     }
 
-    console.log(users[key]);
-
     response += userToString(users[key]);
   }
 

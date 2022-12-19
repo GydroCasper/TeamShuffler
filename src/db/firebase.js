@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getDatabase, set, ref, onValue } from 'firebase/database';
-import { registeredUsers } from '../state.js';
+import { setRegisteredUser } from '../state.js';
 
 const connect = () => {
   const firebaseConfig = {
@@ -38,14 +38,13 @@ export const saveGender = async (userId, userFirstName, userName, userLastName, 
   await set(ref(database, 'players/' + userId), playerObject);
 };
 
-export const fetchUserInfo = (userId) => {
+export const fetchUserInfo = (chatId, userId) => {
   const database = connect();
   const reference = ref(database, 'players/' + userId);
 
   onValue(reference, (snapshot) => {
-    registeredUsers[userId] = {
-      ...registeredUsers[userId],
+    setRegisteredUser(chatId, userId, {
       isMale: snapshot.val()?.isMale,
-    };
+    });
   });
 };

@@ -1,11 +1,11 @@
-import { bot, registeredUsers } from "../state.js";
-import { usersToString } from "../user.js";
+import { bot, getRegisteredUsers } from '../state.js';
+import { usersToString } from '../user.js';
 
 export const list = (msg) => {
   bot.deleteMessage(msg.chat.id, msg.message_id);
-  const playersList = usersToString(registeredUsers);
+  const playersList = usersToString(getRegisteredUsers(msg.chat.id));
   if (!playersList) {
-    bot.sendMessage(msg.chat.id, "Nobody in a pool of players yet");
+    bot.sendMessage(msg.chat.id, 'Nobody in a pool of players yet');
     return;
   }
 

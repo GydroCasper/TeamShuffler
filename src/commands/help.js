@@ -8,7 +8,7 @@ export const help = (msg) => {
     msg.from.id,
     'Commands, that are available: \r\n\r\n' +
       '\\r or \\register - command that is sent by a player if he wants to be included in a random team in the next draft. This command is not shown in the common chat, the result of it be sent by personal message to an user.\r\n\r\n' +
-      '\\u or \\unregister - command is sent by a player who doesn\'t want to participate in drafts anymore. When he is ready to be in team again, "register" team is needed to be sent by an user. This command is not shown in the common chat, the result of it be sent by personal message to an user.\r\n\r\n' +
+      '\\d or \\deregister - command is sent by a player who doesn\'t want to participate in drafts anymore. When he is ready to be in team again, "register" team is needed to be sent by an user. This command is not shown in the common chat, the result of it be sent by personal message to an user.\r\n\r\n' +
       `\\c or \\clear - command to clear all registered users. This command is being executed automatically in ${HOURS_TO_DISPOSE} hours after last registration is completed. This command is shown in the common chat.\r\n\r\n` +
       '\\h or \\help - command to show all commands options. This command is not shown in the common chat, the result of it be sent by personal message to an user.\r\n\r\n' +
       '\\l or \\list - command to show all the registered users at the time. This command is shown in the common chat.\r\n\r\n' +
