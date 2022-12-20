@@ -1,6 +1,6 @@
 # TeamShuffler
  
-The project is dedicated to using Telegram chat-bot to create teams of voleyball players. It split registered users in teams, which count is dependent on nets count, 2 by default. The bot balances the gender composition of each team. All the players have to register to play in a game for tonigth, and if they don't want to play anymore (or want to take a pause) they have to unregister.
+> The project is dedicated to using Telegram chat-bot to create teams of voleyball players. It split registered users in teams, which count is dependent on nets count, 2 by default. The bot balances the gender composition of each team. All the players have to register to play in a game for tonigth, and if they don't want to play anymore (or want to take a pause) they have to unregister.
 Befeore the games starts, bot can shuffle all the registered players into teams balanced by gender.
 All registration are automatically being disposed in 4 hours after last registration for tonight is defined.
 The gender is stored Google Firebase, so it state doesn't clear in time.
