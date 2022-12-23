@@ -1,11 +1,12 @@
-import { bot, initRegisteredUsers, isNoRegisteredUsers } from '../state.js';
+import { initRegisteredUsers, isNoRegisteredUsers } from '../state.js';
+import { deleteMessage, sendMessageToChat, sendPersonalMessage } from '../bot.js';
 
 export const clear = (msg) => {
   if (isNoRegisteredUsers(msg.chat.id)) {
-    bot.deleteMessage(msg.chat.id, msg.message_id);
-    bot.sendMessage(msg.from.id, `Nobody in a pool of players, nothing to clean up`);
+    deleteMessage(msg.chat.id, msg.message_id);
+    sendPersonalMessage(msg.from.id, `Nobody in a pool of players, nothing to clean up`);
     return;
   }
   initRegisteredUsers(msg.chat.id);
-  bot.sendMessage(msg.chat.id, 'Players pool is cleaned up');
+  sendMessageToChat(msg.chat.id, 'Players pool is cleaned up');
 };

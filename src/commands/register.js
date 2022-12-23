@@ -1,11 +1,12 @@
-import { bot, getRegisteredUsers, setRegisteredUser } from '../state.js';
+import { getRegisteredUsers, setRegisteredUser } from '../state.js';
 import { launchTimerToDispose } from '../timer.js';
 import { fetchUserInfo } from '../db/firebase.js';
+import { deleteMessage, sendMessageToChat, sendPersonalMessage } from '../bot.js';
 
 export const register = async (msg) => {
-  bot.deleteMessage(msg.chat.id, msg.message_id);
+  deleteMessage(msg.chat.id, msg.message_id);
   if (msg.from.id in getRegisteredUsers(msg.chat.id)) {
-    bot.sendMessage(
+    sendPersonalMessage(
       msg.from.id,
       `You are in the pool of players in a chat "${msg.chat.title}" already`
     );
@@ -13,7 +14,7 @@ export const register = async (msg) => {
   }
 
   launchTimerToDispose(msg.chat.id, () => {
-    bot.sendMessage(msg.chat.id, 'Thanks for a game, players pool is disposed');
+    sendMessageToChat(msg.chat.id, 'Thanks for a game, players pool is disposed');
   });
 
   fetchUserInfo(msg.chat.id, msg.from.id);
@@ -24,5 +25,5 @@ export const register = async (msg) => {
     lastName: msg.from.last_name,
   });
 
-  bot.sendMessage(msg.from.id, `You joined a pool of players in a chat "${msg.chat.title}"`);
+  sendPersonalMessage(msg.from.id, `You joined a pool of players in a chat "${msg.chat.title}"`);
 };
