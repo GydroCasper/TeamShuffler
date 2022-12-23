@@ -16,6 +16,7 @@ export const help = (msg) => {
       `\\t or \\test - command to demonstrate how \\shuffle command works. It creates teams with a testing set of ${
         getPlayersTestList().length
       } players and takes as a parameter nets count the same way as \\shuffle does. This command is shown in the common chat.\r\n\r\n` +
-      '\\g or \\gender - command to set a gender of a player. Gender is used in \\shuffle command to create balanced teams. Gender is stored in Google Firebase database, so the data in not needed to add more than once. Takes as a parameter options "f" or "female" and "m" or "male". This command is not shown in the common chat, the result of it be sent by personal message to an user.\r\n\r\n'
+      '\\g or \\gender - command to set a gender of a player. Gender is used in \\shuffle command to create balanced teams. Gender is stored in Google Firebase database, so the data in not needed to add more than once. Takes as a parameter options "f" or "female" and "m" or "male". This command is not shown in the common chat, the result of it be sent by personal message to an user.\r\n\r\n' +
+      'All commands are case insensitive.'
   );
 };

@@ -15,7 +15,9 @@ The gender is stored Google Firebase, so it state doesn't clear in time.
 - \s or \shuffle - command to create teams out of registered users. They are created randomly taking into account gender of each player. The command takes nets amount as a parameter, like \s 3, if the parameter is not set explicitly, it is set to the default value of 2. Each run of the command leads to new results.. This command is shown in the common chat.
 - \t or \test - command to demonstrate how \shuffle command works. It creates teams with a testing set of 20 players and takes as a parameter nets count the same way as \shuffle does. This command is shown in the common chat.
 - \g or \gender - command to set a gender of a player. Gender is used in \shuffle command to create balanced teams. Gender is stored in Google Firebase database, so the data in not needed to add more than once. Takes as a parameter options "f" or "female" and "m" or "male". This command is not shown in the common chat, the result of it be sent by personal message to an user.
- 
+
+&emsp; All commands are case insensitive.
+
 ## Important note
  
 &emsp; Bot sends some messages to a presonal chat with an user to not spam in the common chat, but according to Telegram security rules bot can't start conversation with any user privatly. So, to recieve messages from the bot in private user has to send any direct message to a bot @team_shuffler_bot, so after he can recieve all the direct messages from a bot to this chat.
