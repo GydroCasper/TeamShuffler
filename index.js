@@ -18,53 +18,61 @@ import { help } from './src/commands/help.js';
 
 init();
 
-bot.onText(/\/r/, (msg) => {
-  if (msg.text === '/r' || msg.text === '/register') {
+bot.onText(/\/[rR]/, (msg) => {
+  const commandText = msg.text.toLowerCase();
+  if (commandText === '/r' || commandText === '/register') {
     register(msg);
   }
 });
 
-bot.onText(/\/d/, (msg) => {
-  if (msg.text === '/d' || msg.text === '/deregister') {
+bot.onText(/\/[dD]/, (msg) => {
+  const commandText = msg.text.toLowerCase();
+  if (commandText === '/d' || commandText === '/deregister') {
     deregister(msg);
   }
 });
 
-bot.onText(/\/l/, (msg) => {
-  if (msg.text === '/l' || msg.text === '/list') {
+bot.onText(/\/[lL]/, (msg) => {
+  const commandText = msg.text.toLowerCase();
+  if (commandText === '/l' || commandText === '/list') {
     list(msg);
   }
 });
 
-bot.onText(/\/c/, (msg) => {
-  if (msg.text === '/c' || msg.text === '/clear') {
+bot.onText(/\/[cC]/, (msg) => {
+  const commandText = msg.text.toLowerCase();
+  if (commandText === '/c' || commandText === '/clear') {
     clear(msg);
   }
 });
 
-bot.onText(/\/s( .+)?/, (msg, match) => {
-  const command = msg.text.split(' ')[0];
+bot.onText(/\/[sS]( .+)?/, (msg, match) => {
+  const commandText = msg.text.toLowerCase();
+  const command = commandText.split(' ')[0];
   if (command === '/s' || command === '/shuffle') {
     shuffle(msg, match);
   }
 });
 
-bot.onText(/\/g( .+)?/, (msg, match) => {
-  const command = msg.text.split(' ')[0];
+bot.onText(/\/[gG]( .+)?/, (msg, match) => {
+  const commandText = msg.text.toLowerCase();
+  const command = commandText.split(' ')[0];
   if (command === '/g' || command === '/gender') {
     gender(msg, match);
   }
 });
 
-bot.onText(/\/t( .+)?/, (msg, match) => {
-  const command = msg.text.split(' ')[0];
+bot.onText(/\/[tT]( .+)?/, (msg, match) => {
+  const commandText = msg.text.toLowerCase();
+  const command = commandText.split(' ')[0];
   if (command === '/t' || command === '/test') {
     test(msg, match);
   }
 });
 
-bot.onText(/\/h/, (msg) => {
-  if (msg.text === '/h' || msg.text === '/help') {
+bot.onText(/\/[hH]/, (msg) => {
+  const commandText = msg.text.toLowerCase();
+  if (commandText === '/h' || commandText === '/help') {
     help(msg);
   }
 });
