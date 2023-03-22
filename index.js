@@ -80,6 +80,20 @@ bot.on('callback_query', (callbackQuery) => {
   }
 });
 
+bot.on('poll_answer', (pollAnswer) => {
+  const user = pollAnswer.user;
+  const userId = user.id;
+  const userName = user.username || `${user.first_name} ${user.last_name}`;
+  const pollId = pollAnswer.poll_id;
+  const optionIds = pollAnswer.option_ids;
+
+  console.log('pollAnswer: ', pollAnswer);
+
+  console.log(
+    `User ${userName} (ID: ${userId}) answered poll ${pollId} with options: ${optionIds.join(', ')}`
+  );
+});
+
 // bot.onText(/\/[sS]( .+)?/, (msg, match) => {
 //   const commandText = msg.text.toLowerCase();
 //   const command = commandText.split(' ')[0];
